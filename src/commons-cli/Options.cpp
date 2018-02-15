@@ -38,13 +38,13 @@ void COptions::AddOption(const std::string & shortName, const std::string & long
     AddOption(COption(shortName, longName, description, numArgs, isRequired));
 }
 
-COption * COptions::GetShortOption(const std::string shortName)
+COption * COptions::GetShortOption(const std::string &shortName)
 {
     map_option_t::iterator it = m_ShortOptions.find(shortName);
     return it == m_ShortOptions.end() ? NULL : &it->second;
 }
 
-COption * COptions::GetLongOption(const std::string longName)
+COption * COptions::GetLongOption(const std::string &longName)
 {
     map_option_t::iterator it = m_LongOptions.find(longName);
     return it == m_LongOptions.end() ? NULL : &it->second;

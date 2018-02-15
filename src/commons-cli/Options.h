@@ -32,8 +32,8 @@ class COptions
         void AddOption(COption option);
         void AddOption(const std::string &shortName, const std::string &longName, const std::string &description, size_t numArgs, bool isRequired = false);
 
-        COption *GetShortOption(const std::string shortName);
-        COption *GetLongOption(const std::string longName);
+        COption *GetShortOption(const std::string &shortName);
+        COption *GetLongOption(const std::string &longName);
 
         inline const vector_option_t &GetRequiredOptionWithArguments() { return m_RequiredOptionsWithArguments; }
         inline const vector_option_t &GetRequiredOption() { return m_RequiredOptions; }
