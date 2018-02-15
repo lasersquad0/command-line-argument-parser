@@ -1,0 +1,6 @@
+#include "src\commons-cli\DefaultParser.cpp"
+#include "src\commons-cli\HelpFormatter.cpp"
+#include "src\commons-cli\CommandLine.cpp"
+#include "src\commons-cli\Options.cpp"
+#include "src\commons-cli\Option.cpp"
+#include "src\main.cpp"
