@@ -11,30 +11,22 @@
     STDLib/OS includes
 */
 
-std::vector<std::string> CHelpFormatter::SplitString(const std::string & text, char delimiter)
+std::vector<std::string> CHelpFormatter::SplitString(const std::string & text, const std::string &delimiter)
 {
     std::vector<std::string> retData;
-    const char *txt = text.c_str();
-    std::string currentString;
+    size_t start = 0, end = text.find_first_of(delimiter);
 
-    while (*txt)
+    while(end != std::string::npos)
     {
-        if (*txt == delimiter && currentString.size())
-        {
-            retData.push_back(currentString);
-            currentString.clear();
-        }
-        else
-        {
-            currentString += *txt;
-        }
+        retData.push_back(text.substr(start, end - start));
 
-        ++txt;
+        start = end + delimiter.size();
+        end = text.find_first_of(delimiter, start);
     }
 
-    if (currentString.size())
+    if(start != end)
     {
-        retData.push_back(currentString);
+        retData.push_back(text.substr(start, end));
     }
 
     return retData;
@@ -84,7 +76,7 @@ std::string CHelpFormatter::Format(const std::string & appName, COptions * optio
         std::string auxBuffer(argsNames[i]);
         auxBuffer.append(std::string(largestArgsName - argsNames[i].size(), ' ') + argsParams[i]);
 
-        std::vector<std::string> descriptionLines = SplitString(opt[i].GetDescription(), '\n');
+        std::vector<std::string> descriptionLines = SplitString(opt[i].GetDescription(), "\n");
         if (descriptionLines.size()) auxBuffer.append(std::string(largestArgsName + largestParamsName + 1 - auxBuffer.size(), ' ') + descriptionLines[0]);
 
         for (size_t l = 1; l < descriptionLines.size(); ++l)
