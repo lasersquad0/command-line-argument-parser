@@ -41,6 +41,7 @@ class COption
         inline bool HasShortName() { return m_ShortName.size() > 0; }
         inline bool HasLongName() { return m_LongName.size() > 0; }
 
+        inline bool AcceptsArgs() { return m_Args.size() < m_NumArgs; }
         inline bool IsRequired() { return m_IsRequired; }
         inline bool HasArgs() { return m_NumArgs > 0; }
 };

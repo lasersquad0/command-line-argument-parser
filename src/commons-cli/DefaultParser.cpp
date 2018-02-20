@@ -42,8 +42,16 @@ bool CDeafultParser::HandleToken(const std::string & token)
     }
     else if (m_CurrentOption && m_CurrentOption->HasArgs())
     {
-        m_CurrentOption->AddArg(token);
-        UpdateRequiredOptionsWithArguments(m_CurrentOption);
+        if(m_CurrentOption->AcceptsArgs())
+        {
+            m_CurrentOption->AddArg(token);
+            UpdateRequiredOptionsWithArguments(m_CurrentOption);
+        }
+        else
+        {
+            m_LastError = "Too many arguments for: " + m_CurrentOption->GetShortName();
+            return false;
+        }
     }
     else
     {
