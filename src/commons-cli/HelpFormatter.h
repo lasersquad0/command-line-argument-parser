@@ -16,7 +16,7 @@
 class CHelpFormatter
 {
     private:
-        static std::vector<std::string> SplitString(const std::string &text, const std::string &delimiter);
+        static std::vector<std::string> SplitString(const std::string &text, const std::string &delimiter, bool allowEmptyText = false);
 
     public:
         static std::string Format(const std::string &appName, COptions *options);

@@ -11,16 +11,20 @@
     STDLib/OS includes
 */
 
-std::vector<std::string> CHelpFormatter::SplitString(const std::string & text, const std::string &delimiter)
+std::vector<std::string> CHelpFormatter::SplitString(const std::string & text, const std::string &delimiter, bool allowEmptyText/* = false */)
 {
     std::vector<std::string> retData;
     size_t start = 0, end = text.find_first_of(delimiter);
+    size_t delimiterSize = 1; // NOTE(Andrei): Because we use find_first_of
 
     while(end != std::string::npos)
     {
-        retData.push_back(text.substr(start, end - start));
+        if(end - start || allowEmptyText)
+        {
+            retData.push_back(text.substr(start, end - start));
+        }
 
-        start = end + delimiter.size();
+        start = end + delimiterSize;
         end = text.find_first_of(delimiter, start);
     }
 
