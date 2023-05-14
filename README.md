@@ -8,32 +8,11 @@ CDeafultParser defaultParser;
 CCommandLine cmd;
 COptions options;
 
-options.AddOption
-(
-    "i",
-    "input",
-    "input test",
-    1,
-    true
-);
+options.AddOption("i", "input", "input test", 1, true);
 
-options.AddOption
-(
-    "o",
-    "output",
-    "output test",
-    1,
-    true
-);
+options.AddOption("o", "output", "output test", 1, true);
 
-options.AddOption
-(
-    "a",
-    "algorithm",
-    "algorithm test",
-    0,
-    false
-);
+options.AddOption("a", "algorithm", "algorithm test", 0, false);
 
 if (!defaultParser.Parse(&options, &cmd, argv, argc))
 {
