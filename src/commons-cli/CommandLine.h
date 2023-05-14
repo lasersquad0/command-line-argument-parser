@@ -28,4 +28,7 @@ class CCommandLine
 
         bool HasOption(const std::string &opt);
         std::string GetOptionValue(const std::string &opt, const std::string &defaultValue = "");
+        std::string GetOptionValue(const std::string& opt, uint32_t valIndex, const std::string& defaultValue = "");
+        bool CheckMissingArguments();
+        std::vector<COption*> GetOptionsWithMissingArguments();
 };

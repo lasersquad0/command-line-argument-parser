@@ -127,7 +127,29 @@ void CDeafultParser::UpdateRequiredOptions(COption * option)
     }
 }
 
-bool CDeafultParser::CheckMissingRequiredArgsuments()
+bool CDeafultParser::CheckMissingArguments()
+{
+	if (!m_CommandLine->CheckMissingArguments()) return false;
+
+	std::vector<COption*> missing = m_CommandLine->GetOptionsWithMissingArguments();
+
+	m_LastError = "Missing arguments for option";
+	m_LastError.append(missing.size() == 1 ? "" : "s");
+	m_LastError.append(": ");
+
+	for (size_t i = 0; i < missing.size(); ++i)
+	{
+		std::string optName = missing[i]->GetShortName();
+		if (optName.empty()) optName = missing[i]->GetLongName();
+
+		m_LastError.append(optName);
+		if (i + 1 < missing.size()) m_LastError.append(", ");
+	}
+
+	return true;
+}
+
+bool CDeafultParser::CheckMissingRequiredArguments()
 {
     if (m_ExpectedOptionWithArguments.size() == 0) return false;
     m_LastError = "Missing arguments for option";
@@ -209,7 +231,7 @@ bool CDeafultParser::Parse(COptions * options, CCommandLine * cmd, const std::ve
         }
     }
 
-    if (CheckMissingRequiredArgsuments() || CheckMissingRequiredOptions())
+    if (CheckMissingRequiredArguments() || CheckMissingRequiredOptions() || CheckMissingArguments())
     {
         return false;
     }

@@ -35,8 +35,9 @@ class CDeafultParser
         void UpdateRequiredOptionsWithArguments(COption *option);
         void UpdateRequiredOptions(COption *option);
 
-        bool CheckMissingRequiredArgsuments();
+        bool CheckMissingRequiredArguments();
         bool CheckMissingRequiredOptions();
+        bool CheckMissingArguments();
 
     public:
         CDeafultParser();
