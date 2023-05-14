@@ -8,7 +8,7 @@ CDeafultParser defaultParser;
 CCommandLine cmd;
 COptions options;
 
-options.AddOption("i", "input", "input test", 1, true);
+options.AddOption("i", "input", "input test", 2, true);
 
 options.AddOption("o", "output", "output test", 1, true);
 
@@ -25,8 +25,11 @@ if (!defaultParser.Parse(&options, &cmd, argv, argc))
     return 0;
 }
 
-std::string input = cmd.GetOptionValue("input", "");
-printf("-i: %s\n", input.c_str());
+std::string input1 = cmd.GetOptionValue("input", "");
+printf("-i: %s\n", input1.c_str());
+
+std::string input2 = cmd.GetOptionValue("input", 1, "");
+printf("-i: %s\n", input2.c_str());
 
 std::string output = cmd.GetOptionValue("output", "");
 printf("-o: %s\n", output.c_str());
