@@ -1,0 +1,62 @@
+//
+// Project includes
+//
+#include "Option.h"
+
+//
+// Libs include
+//
+
+//
+// STDLib/OS includes
+//
+
+///////////////////////////////////////////////////////////////////////////////
+
+COption::COption(const std::string &shortName, const std::string &longName, const std::string &description, uint16_t numArgs, bool isRequired/*=false*/)
+{
+    m_ShortName.assign(shortName);
+    m_LongName.assign(longName);
+
+    m_Description.assign(description);
+    m_IsRequired = isRequired;
+    m_NumArgs = numArgs;
+    m_NumRequiredArgs = numArgs;
+}
+
+COption& COption::Assign(const std::string& shortName, const std::string& longName, const std::string& description, uint16_t numArgs, bool isRequired/*=false*/)
+{
+    m_ShortName.assign(shortName);
+    m_LongName.assign(longName);
+
+    m_Description.assign(description);
+    m_IsRequired = isRequired;
+    m_NumArgs = numArgs;
+    m_NumRequiredArgs = numArgs;
+
+    return *this;
+}
+
+COption& COption::Assign(const COption& opt)
+{
+    m_ShortName.assign(opt.m_ShortName);
+    m_LongName.assign(opt.m_LongName);
+
+    m_Description.assign(opt.m_Description);
+    m_IsRequired = opt.m_IsRequired;
+    m_NumArgs = opt.m_NumArgs;
+    m_NumRequiredArgs = opt.m_NumRequiredArgs;
+    
+    return *this;
+}
+
+//void COption::Assign(const COption_basic& opt)
+//{
+//    m_ShortName.assign(opt.m_ShortName);
+//    m_LongName.assign(opt.m_LongName);
+//
+//    m_Description.assign(opt.m_Description);
+//    m_IsRequired = opt.m_IsRequired;
+//    m_NumArgs = opt.m_NumArgs;
+//    m_NumRequiredArgs = opt.m_NumRequiredArgs;
+//}
