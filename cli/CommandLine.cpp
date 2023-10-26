@@ -69,7 +69,7 @@ std::string CCommandLine::GetOptionValue(const std::string &opt, size_t index, c
 const vector_string_t& CCommandLine::GetOptionValues(const std::string& opt)
 {
     COption* option = ResolveOption(opt, m_Options);
-    if (option == nullptr) return *(new vector_string_t()); // return empty list if option is not found in cmd
+    if (option == nullptr) return *(new vector_string_t()); // return empty list if option is not found in cmd ***TODO possible memory leak???
 
     return option->GetArgs();
 }
