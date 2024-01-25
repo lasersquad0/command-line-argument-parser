@@ -31,7 +31,7 @@ public:
     inline const std::string &GetLastError() { return m_LastError; };
 
     /**
-     * @brief Parse the program command line arguments. An option stars with
+     * @brief Parse the program command line arguments. An option stars
      * with one to two dashes. "-i" is an option short name, "--input" is
      * the option long name, an option is followed by the arguments if any.
      *
@@ -61,8 +61,9 @@ private:
      * the option argument. An option name starts with one or two dashes for
      * short or long name.
      *
-     * @note Currently unknown token are ignored. In case a option receives
-     * more arguments than expected or less an error will be raised.
+     * @note Currently unknown token are ignored. In case an option receives
+     * more arguments than expected an error will be raised. 
+     * In case an option receives less arguments than required an error will be raised.
      *
      * @param token The command line argument.
      * @return true on success, false otherwise.
@@ -111,7 +112,11 @@ private:
      */
     bool CheckMissingRequiredOptions();
 
-    bool CheckMissingArguments();
+    /**
+    * @brief Check for missing required options.
+    * @return true if there are missing options, false otherwise.
+    */
+    //bool CheckMissingArguments();
 
 private:
     /** @brief List of accepted options. */
@@ -120,7 +125,7 @@ private:
     /** @brief Store the processed options */
     CCommandLine *m_CommandLine = nullptr;
 
-    /** @brief A pointer to the current option is parsed. */
+    /** @brief A pointer to the current option being parsed. */
     COption *m_CurrentOption = nullptr;
 
     /** @brief Contains the last parsing error. */

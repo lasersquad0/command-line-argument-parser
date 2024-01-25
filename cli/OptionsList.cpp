@@ -66,7 +66,8 @@ vector_option_pt COptionsList::GetOptionsWithRequiredArguments()
 
     for (auto &it : m_AllOptions)
     {
-        if (it.HasArgs())
+        //if (it.HasArgs())
+        if(it.GetNumRequiredArgs() > 0)
             ret.emplace_back(&it);
     }
 

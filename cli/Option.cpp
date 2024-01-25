@@ -17,7 +17,6 @@ COption::COption(const std::string &shortName, const std::string &longName, cons
 {
     m_ShortName.assign(shortName);
     m_LongName.assign(longName);
-
     m_Description.assign(description);
     m_IsRequired = isRequired;
     m_NumArgs = numArgs;
@@ -28,7 +27,6 @@ COption& COption::Assign(const std::string& shortName, const std::string& longNa
 {
     m_ShortName.assign(shortName);
     m_LongName.assign(longName);
-
     m_Description.assign(description);
     m_IsRequired = isRequired;
     m_NumArgs = numArgs;
@@ -48,6 +46,20 @@ COption& COption::Assign(const COption& opt)
     m_NumRequiredArgs = opt.m_NumRequiredArgs;
     
     return *this;
+}
+
+const std::string COption::GetNonEmptyName(bool addDash /* =false*/)
+{
+    if (addDash)
+        if (m_ShortName.empty())
+            return DDASH + m_LongName;
+        else
+            return DASH + m_ShortName;
+    else
+        if (m_ShortName.empty())
+            return m_LongName;
+        else
+            return m_ShortName;
 }
 
 //void COption::Assign(const COption_basic& opt)

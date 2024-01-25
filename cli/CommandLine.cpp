@@ -19,7 +19,7 @@ static COption* ResolveOption(const std::string &opt, const vector_option_pt &op
 
     for (const auto &it : options)
     {
-        if (it->GetShortName() == opt || it->GetLongName() == opt)
+        if (it->GetShortName() == opt || ( !(it->GetLongName().empty()) && (it->GetLongName() == opt)) )
         {
             return it;
         }
