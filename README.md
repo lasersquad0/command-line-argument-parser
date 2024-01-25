@@ -4,6 +4,8 @@ A basic implementation in C++ of the apache-commons-cli
 
 ### Usage
 ```
+int main(int argc, char *argv[])
+{
 CDefaultParser defaultParser;
 COptionsList options;
 CCommandLine cmd;
@@ -54,6 +56,8 @@ printf("-a: %s\n", hasOption ? "true" : "false");
 // all options arguments can be returned all together as vector. it might be more convenient in some cases. 
 vector_string_t arguments = cmd.GetOptionValues("i");
 
+return 0;
+}
 ```
 
 ### Output
