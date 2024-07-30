@@ -31,7 +31,7 @@
  *  if(cmd.HasOption("foo"))
  *      printf("Is 'foo' present: %s\n", preset");
  *
- *  std::string barArg0 = cmd.GetOptionValue("bar", 0, "default-value");
+ *  cli_string barArg0 = cmd.GetOptionValue("bar", 0, "default-value");
  *  printf("'bar' argument 0 is: %s\n", barArg0.c_str());
  * 
  *  vector_option_pt& list = cmd.GetOptions();
@@ -67,7 +67,7 @@ public:
      * @param opt The option name (short or long).
      * @return true on success, false otherwise.
      */
-    bool HasOption(const std::string &opt);
+    bool HasOption(const cli_string &opt);
 
     /**
      * @brief Retrieves one of the option arguments. If the option is not found
@@ -79,7 +79,7 @@ public:
      * @param defaultValue The default value.
      * @return The option argument value.
      */
-    std::string GetOptionValue(const std::string &opt, size_t index = 0, const std::string &defaultValue = "");
+    cli_string GetOptionValue(const cli_string &opt, size_t index = 0, const cli_string &defaultValue = _T(""));
 
     /**
      * @brief Retrieves all option arguments as std::vector<string>. 
@@ -88,7 +88,7 @@ public:
      * @param opt The option name (short or long).
      * @return List of option arguments as std::vector<string>.
      */
-    const vector_string_t& GetOptionValues(const std::string& opt);
+    const vector_string_t& GetOptionValues(const cli_string& opt);
 
     /**
      * @brief Check if a there are options which mandaroty arguments have not been found in command line.
@@ -109,3 +109,4 @@ private:
     /** @brief List of parsed options. */
     vector_option_pt m_Options;
 };
+

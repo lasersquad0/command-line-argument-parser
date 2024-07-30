@@ -28,7 +28,7 @@ public:
      * @brief Get the last error during the command line arguments parsing.
      * @return A string with the error.
      */
-    inline const std::string &GetLastError() { return m_LastError; };
+    inline const cli_string &GetLastError() { return m_LastError; };
 
     /**
      * @brief Parse the program command line arguments. An option stars
@@ -41,7 +41,7 @@ public:
      * @param argc Number of the program arguments.
      * @return true on success, false otherwise.
      */
-    bool Parse(COptionsList *options, CCommandLine *cmd, char *argv[], int argc);
+    bool Parse(COptionsList *options, CCommandLine *cmd, _TCHAR *argv[], int argc);
 
     /**
      * @brief Parse the program command line arguments. An option stars with
@@ -68,19 +68,19 @@ private:
      * @param token The command line argument.
      * @return true on success, false otherwise.
      */
-    bool HandleToken(const std::string &token);
+    bool HandleToken(const cli_string &token);
 
     /**
      * @brief Handle long name tokens.
      * @param token Token name.
      */
-    bool HandleLongOption(const std::string &token);
+    bool HandleLongOption(const cli_string &token);
 
     /**
      * @brief Handle short name token.
      * @param token Token name.
      */
-    bool HandleShortOption(const std::string &token);
+    bool HandleShortOption(const cli_string &token);
 
     /**
      * @brief Updates the option data structure that handles options with
@@ -129,7 +129,7 @@ private:
     COption *m_CurrentOption = nullptr;
 
     /** @brief Contains the last parsing error. */
-    std::string m_LastError;
+    cli_string m_LastError;
 
     /** @brief List of required options. */
     vector_option_pt m_ExpectedOption;
@@ -137,3 +137,4 @@ private:
     /** @brief List of option with required arguments. */
     vector_option_pt m_ExpectedOptionWithArguments;
 };
+

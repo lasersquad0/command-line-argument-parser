@@ -16,11 +16,24 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-#define DASH  "-"
-#define DDASH "--"
+#if defined(UNICODE) || defined(_UNICODE)
+//#define _T(x)      L ## x
+typedef std::wstring cli_string;
+#define to_clistring std::to_wstring
+
+#else
+
+//#define _T(x)      x
+typedef std::string cli_string;
+#define to_clistring std::to_string
+
+#endif
+
+#define DASH  _T("-")
+#define DDASH _T("--")
 
 /** @brief Vector that contains strings. Commonly used type in many classes */
-typedef std::vector<std::string> vector_string_t;
+typedef std::vector<cli_string> vector_string_t;
 
 class COption
 {
@@ -40,7 +53,7 @@ public:
      * @param numArgs Maximum number of arguments of the option.
      * @param isRequired True if option is required option, false otherwise.
      */
-    COption(const std::string& shortName, const std::string& longName, const std::string& description, uint16_t numArgs, bool isRequired = false);
+    COption(const cli_string& shortName, const cli_string& longName, const cli_string& description, uint16_t numArgs, bool isRequired = false);
 
     /**
      * @brief Update option information.
@@ -51,7 +64,7 @@ public:
      * @param numArgs Maximum number of arguments of the option.
      * @param isRequired True if option is required option, false otherwise.
      */
-    COption& Assign(const std::string& shortName, const std::string& longName, const std::string& description, uint16_t numArgs, bool isRequired = false);
+    COption& Assign(const cli_string& shortName, const cli_string& longName, const cli_string& description, uint16_t numArgs, bool isRequired = false);
 
     /**
      * @brief Update option information from another option.
@@ -64,7 +77,7 @@ public:
      * @brief Store the option argument.
      * @param arg The option argument.
      */
-    inline COption& AddArg(const std::string& arg) { m_Args.push_back(arg); return *this; }
+    inline COption& AddArg(const cli_string& arg) { m_Args.push_back(arg); return *this; }
 
     /**
      * @brief Retrieve the option arguments.
@@ -115,28 +128,28 @@ public:
      * @brief Get the option description.
      * @return A string with the option description.
      */
-    inline const std::string& GetDescription() { return m_Description; }
-    COption& Descr(const std::string& descr) { m_Description = descr; return *this; }
+    inline const cli_string& GetDescription() { return m_Description; }
+    COption& Descr(const cli_string& descr) { m_Description = descr; return *this; }
     
     /**
      * @brief Get the option short name (does not contain the dash).
      * @return A string with the short name.
      */
-    inline const std::string& GetShortName() { return m_ShortName; }
-    COption& ShortName(const std::string& shortName) { m_ShortName = shortName; return *this; }
+    inline const cli_string& GetShortName() { return m_ShortName; }
+    COption& ShortName(const cli_string& shortName) { m_ShortName = shortName; return *this; }
     
     /**
      * @brief Get the option long name (does not contain the dashes).
      * @return A string with the long name.
      */
-    inline const std::string& GetLongName() { return m_LongName; }
-    COption& LongName(const std::string& longName) { m_LongName = longName; return *this; }
+    inline const cli_string& GetLongName() { return m_LongName; }
+    COption& LongName(const cli_string& longName) { m_LongName = longName; return *this; }
     
     /**
      * @brief Get non empty option name either short name or long name (does not contain the dashes).
      * @return A string with the non empty name.
      */
-    const std::string GetNonEmptyName(bool addDash = false);
+    const cli_string GetNonEmptyName(bool addDash = false);
 
     /**
      * @brief Check if the option has short nane.
@@ -183,13 +196,13 @@ public:
 private:
 
     /** @brief Option short name (ex: -v). */
-    std::string m_ShortName;
+    cli_string m_ShortName;
 
     /** @brief Option long name (ex: --version). */
-    std::string m_LongName;
+    cli_string m_LongName;
 
     /** @brief Human reafable option description. */
-    std::string m_Description;
+    cli_string m_Description;
 
     /** @brief Is the option required or optional. */
     bool m_IsRequired;

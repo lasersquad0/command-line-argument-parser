@@ -13,7 +13,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-static COption* ResolveOption(const std::string &opt, const vector_option_pt &options)
+static COption* ResolveOption(const cli_string &opt, const vector_option_pt &options)
 {
     if (opt.empty()) return nullptr; // empty option name is not allowed
 
@@ -35,8 +35,8 @@ void CCommandLine::Clear()
 
 bool CCommandLine::AddOption(COption* option)
 {
-    const std::string& sn = option->GetShortName();
-    const std::string& ln = option->GetLongName();
+    const cli_string& sn = option->GetShortName();
+    const cli_string& ln = option->GetLongName();
     
     if (sn.empty())
     {
@@ -51,13 +51,13 @@ bool CCommandLine::AddOption(COption* option)
     return true;
 }
 
-bool CCommandLine::HasOption(const std::string &opt)
+bool CCommandLine::HasOption(const cli_string &opt)
 {
     COption *option = ResolveOption(opt, m_Options);
     return option != nullptr;
 }
 
-std::string CCommandLine::GetOptionValue(const std::string &opt, size_t index, const std::string &defaultValue)
+cli_string CCommandLine::GetOptionValue(const cli_string &opt, size_t index, const cli_string &defaultValue)
 {
     COption *option = ResolveOption(opt, m_Options);
     if (option == nullptr) return defaultValue;
@@ -66,7 +66,7 @@ std::string CCommandLine::GetOptionValue(const std::string &opt, size_t index, c
     return option->GetArgs()[index];
 }
 
-const vector_string_t& CCommandLine::GetOptionValues(const std::string& opt)
+const vector_string_t& CCommandLine::GetOptionValues(const cli_string& opt)
 {
     COption* option = ResolveOption(opt, m_Options);
     if (option == nullptr) return *(new vector_string_t()); // return empty list if option is not found in cmd ***TODO possible memory leak???
@@ -99,3 +99,4 @@ vector_option_pt CCommandLine::GetOptionsWithMissingArguments()
 
     return missingArgs;
 }
+

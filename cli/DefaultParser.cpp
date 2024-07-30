@@ -12,24 +12,24 @@
 //
 
 
-bool CDefaultParser::HandleToken(const std::string &token)
+bool CDefaultParser::HandleToken(const cli_string &token)
 {
     if (token == DASH || token == DDASH)
     {
-        m_LastError = "No name specified for the option";
+        m_LastError = _T("No name specified for the option");
         return false;
     }
     else if (token.compare(0, 2, DDASH) == 0)
     {
         if(m_CommandLine->HasOption(token.substr(2, token.size())))
         {
-            m_LastError = "Duplicate option has been met: " + token;
+            m_LastError = _T("Duplicate option has been met: ") + token;
             return false;
         }
 
         if (!HandleLongOption(token))
         {
-            m_LastError = "Unknown option has been met: " + token;
+            m_LastError = _T("Unknown option has been met: ") + token;
             return false;
         }
     }
@@ -37,13 +37,13 @@ bool CDefaultParser::HandleToken(const std::string &token)
     {
         if (m_CommandLine->HasOption(token.substr(1, token.size())))
         {
-            m_LastError = "Duplicate option has been met: " + token;
+            m_LastError = _T("Duplicate option has been met: ") + token;
             return false;
         }
 
         if (!HandleShortOption(token))
         {
-            m_LastError = "Unknown option has been met: " + token;
+            m_LastError = _T("Unknown option has been met: ") + token;
             return false;
         }
     }
@@ -56,13 +56,13 @@ bool CDefaultParser::HandleToken(const std::string &token)
         }
         else
         {
-            m_LastError = "Too many arguments for: " + m_CurrentOption->GetNonEmptyName();
+            m_LastError = _T("Too many arguments for: ") + m_CurrentOption->GetNonEmptyName();
             return false;
         }
     }
     else
     {
-        m_LastError = "Unknown argument in command line: " + token;
+        m_LastError = _T("Unknown argument in command line: ") + token;
         return false;
         // TODO(Andrei): Handle unknown token
     }
@@ -70,9 +70,9 @@ bool CDefaultParser::HandleToken(const std::string &token)
     return true;
 }
 
-bool CDefaultParser::HandleLongOption(const std::string &token)
+bool CDefaultParser::HandleLongOption(const cli_string &token)
 {
-    std::string opt = token.substr(2, token.size());
+    cli_string opt = token.substr(2, token.size());
     COption* longOption = m_OptionsList->GetOptionByLongName(opt);
 
     if (!longOption)
@@ -87,9 +87,9 @@ bool CDefaultParser::HandleLongOption(const std::string &token)
     return true;
 }
 
-bool CDefaultParser::HandleShortOption(const std::string &token)
+bool CDefaultParser::HandleShortOption(const cli_string &token)
 {
-    std::string opt = token.substr(1, token.size());
+    cli_string opt = token.substr(1, token.size());
     COption* shortOption = m_OptionsList->GetOptionByShortName(opt);
 
     if (!shortOption)
@@ -97,7 +97,7 @@ bool CDefaultParser::HandleShortOption(const std::string &token)
         m_CurrentOption = nullptr;
         return false;
     }
-    
+
     m_CurrentOption = shortOption->HasArgs() ? shortOption : nullptr;
     m_CommandLine->AddOption(shortOption);
     UpdateRequiredOptions(shortOption);
@@ -110,11 +110,11 @@ void CDefaultParser::UpdateOptionsWithArguments(COption *option)
     size_t availableArgs = option->GetArgs().size();  // actual number of option arguments added at the current moment of time
 
     //bool argsAvailable = availableArgs >= neededArgs;// TODO shall we exit immediately if argsAvailable==false? no need doing 'for' in this case.
-    
-    if (availableArgs < neededArgs) return; 
 
-    std::string shortName = option->GetShortName();
-    std::string longName = option->GetLongName();
+    if (availableArgs < neededArgs) return;
+
+    cli_string shortName = option->GetShortName();
+    cli_string longName = option->GetLongName();
 
     for (auto it = m_ExpectedOptionWithArguments.begin(); it != m_ExpectedOptionWithArguments.end(); ++it)
     {
@@ -128,8 +128,8 @@ void CDefaultParser::UpdateOptionsWithArguments(COption *option)
 
 void CDefaultParser::UpdateRequiredOptions(COption *option)
 {
-    std::string shortName = option->GetShortName();
-    std::string longName = option->GetLongName();
+    cli_string shortName = option->GetShortName();
+    cli_string longName = option->GetLongName();
 
     for (auto it = m_ExpectedOption.begin(); it != m_ExpectedOption.end(); ++it)
     {
@@ -145,7 +145,7 @@ bool CDefaultParser::CheckMissingRequiredArguments()
 {
     for (auto it = m_ExpectedOptionWithArguments.begin(); it != m_ExpectedOptionWithArguments.end();)
     {
-        if( /*((*it)->GetNumRequiredArgs() == 0) ||*/ /*(*it)->GetArgs().empty() /* && !(*it)->IsRequired() &&*/ 
+        if( //((*it)->GetNumRequiredArgs() == 0) || (*it)->GetArgs().empty()  && !(*it)->IsRequired() &&
             !m_CommandLine->HasOption((*it)->GetNonEmptyName()))
             it = m_ExpectedOptionWithArguments.erase(it);
         else
@@ -154,20 +154,20 @@ bool CDefaultParser::CheckMissingRequiredArguments()
 
     if (m_ExpectedOptionWithArguments.empty()) return false;
 
-    m_LastError = "Missing arguments for option";
-    m_LastError.append(m_ExpectedOptionWithArguments.size() == 1 ? "" : "s");
-    m_LastError.append(": ");
+    m_LastError = _T("Missing arguments for option");
+    m_LastError.append(m_ExpectedOptionWithArguments.size() == 1 ? _T("") : _T("s"));
+    m_LastError.append(_T(": "));
 
     for (size_t i = 0; i < m_ExpectedOptionWithArguments.size(); ++i)
     {
-        //std::string optName = m_ExpectedOptionWithArguments[i]->GetShortName();
+        //cli_string optName = m_ExpectedOptionWithArguments[i]->GetShortName();
         //if (optName.empty())
         //    optName = m_ExpectedOptionWithArguments[i]->GetLongName();
 
-        std::string optName = m_ExpectedOptionWithArguments[i]->GetNonEmptyName(true);
+        cli_string optName = m_ExpectedOptionWithArguments[i]->GetNonEmptyName(true);
 
         m_LastError.append(optName);
-        if (i + 1 < m_ExpectedOptionWithArguments.size()) m_LastError.append(", ");
+        if (i + 1 < m_ExpectedOptionWithArguments.size()) m_LastError.append(_T(", "));
     }
 
     return true;
@@ -178,7 +178,7 @@ bool CDefaultParser::CheckMissingRequiredArguments()
 //    //if (!m_CommandLine->CheckMissingArguments()) return false;
 //
 //    vector_option_pt missing = m_CommandLine->GetOptionsWithMissingArguments();
-//    
+//
 //    if (missing.size() == 0) return false;
 //
 //    m_LastError = "Missing arguments for option";
@@ -187,7 +187,7 @@ bool CDefaultParser::CheckMissingRequiredArguments()
 //
 //    for (size_t i = 0; i < missing.size(); ++i)
 //    {
-//        std::string optName = missing[i]->GetNonEmptyName(true);
+//        cli_string optName = missing[i]->GetNonEmptyName(true);
 //
 //        m_LastError.append(optName);
 //        if (i + 1 < missing.size()) m_LastError.append(", ");
@@ -200,28 +200,28 @@ bool CDefaultParser::CheckMissingRequiredOptions()
 {
     if (m_ExpectedOption.empty()) return false;
 
-    m_LastError = "Missing required option";
-    m_LastError.append(m_ExpectedOption.size() == 1 ? "" : "s");
-    m_LastError.append(": ");
+    m_LastError = _T("Missing required option");
+    m_LastError.append(m_ExpectedOption.size() == 1 ? _T("") : _T("s"));
+    m_LastError.append(_T(": "));
 
     for (size_t i = 0; i < m_ExpectedOption.size(); ++i)
     {
-        //std::string optName = m_ExpectedOption[i]->GetShortName();
+        //cli_string optName = m_ExpectedOption[i]->GetShortName();
         //if (optName.empty()) optName = m_ExpectedOption[i]->GetLongName();
 
-        std::string optName = m_ExpectedOption[i]->GetNonEmptyName(true);
+        cli_string optName = m_ExpectedOption[i]->GetNonEmptyName(true);
 
         m_LastError.append(optName);
-        if (i + 1 < m_ExpectedOption.size()) m_LastError.append(", ");
+        if (i + 1 < m_ExpectedOption.size()) m_LastError.append(_T(", "));
     }
 
     return true;
 }
 
-bool CDefaultParser::Parse(COptionsList *options, CCommandLine *cmd, char *argv[], int argc)
+bool CDefaultParser::Parse(COptionsList *options, CCommandLine *cmd, _TCHAR *argv[], int argc)
 {
     vector_string_t args;
-    args.resize(argc - 1, "");
+    args.resize(argc - 1, _T(""));
 
     for (int i = 1; i < argc; ++i) // i=1: bypass program name (argv[0])
     {
@@ -235,19 +235,19 @@ bool CDefaultParser::Parse(COptionsList *options, CCommandLine *cmd, const vecto
 {
     if (args.size() == 0)
     {
-        m_LastError = "Empty list of options in command line";
+        m_LastError = _T("Empty list of options in command line");
         return false;
     }
 
     if (options == nullptr)
     {
-        m_LastError = "COptionsList can not be nullptr";
+        m_LastError = _T("COptionsList can not be nullptr");
         return false;
     }
 
     if (cmd == nullptr)
     {
-        m_LastError = "CCommandLine can not be nullptr";
+        m_LastError = _T("CCommandLine can not be nullptr");
         return false;
     }
 
@@ -274,3 +274,4 @@ bool CDefaultParser::Parse(COptionsList *options, CCommandLine *cmd, const vecto
     m_LastError.clear();
     return true;
 }
+

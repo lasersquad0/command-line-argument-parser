@@ -13,13 +13,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-static vector_string_t SplitString(const std::string &text, const std::string &delimiter)
+static vector_string_t SplitString(const cli_string &text, const cli_string &delimiter)
 {
     vector_string_t retData;
     size_t start = 0, end = text.find_first_of(delimiter);
     size_t delimiterSize = 1; // NOTE(Andrei): Because we use find_first_of
 
-    while(end != std::string::npos)
+    while(end != cli_string::npos)
     {
         if(end - start)
         {
@@ -38,9 +38,9 @@ static vector_string_t SplitString(const std::string &text, const std::string &d
     return retData;
 }
 
-std::string CHelpFormatter::Format(const std::string &appName, COptionsList *options)
+cli_string CHelpFormatter::Format(const cli_string &appName, COptionsList *options)
 {
-    std::string helpBuffer(appName + " usage:\n");
+    cli_string helpBuffer(appName + _T(" usage:\n"));
     vector_option_t& opt = options->GetAllOptions();
 
     vector_string_t argsNames;
@@ -51,15 +51,15 @@ std::string CHelpFormatter::Format(const std::string &appName, COptionsList *opt
 
     for (auto &it : opt)
     {
-        std::string shortName = it.GetShortName(), longName = it.GetLongName();
-        std::string auxBuffer;
+        cli_string shortName = it.GetShortName(), longName = it.GetLongName();
+        cli_string auxBuffer;
 
-        auxBuffer.append("-");
+        auxBuffer.append(_T("-"));
         auxBuffer.append(shortName);
 
         if (!longName.empty())
         {
-            auxBuffer.append(", --");
+            auxBuffer.append(_T(", --"));
             auxBuffer.append(longName);
         }
 
@@ -72,16 +72,16 @@ std::string CHelpFormatter::Format(const std::string &appName, COptionsList *opt
         uint16_t oargs = it.GetNumArgs();
         if (rargs > ARGS_THRESHOLD || oargs > ARGS_THRESHOLD)
         {
-            auxBuffer.append(" <req args>(" + std::to_string(rargs) + ")");
-            auxBuffer.append("...<total args>(up to " + std::to_string(oargs) + ")");
+            auxBuffer.append(_T(" <req args>(") + to_clistring(rargs) + _T(")"));
+            auxBuffer.append(_T("...<total args>(up to ") + to_clistring(oargs) + _T(")"));
         }
         else
         {
-            std::string s;
+            cli_string s;
             if (oargs - rargs > 0)
-                s = " <req arg>";
+                s = _T(" <req arg>");
             else
-                s = " <arg>";
+                s = _T(" <arg>");
 
             for (size_t n = 0; n < rargs; ++n)
             {
@@ -89,7 +89,7 @@ std::string CHelpFormatter::Format(const std::string &appName, COptionsList *opt
             }
             for (size_t n = 0; n < oargs-rargs; ++n)
             {
-                auxBuffer.append(" <arg>");
+                auxBuffer.append(_T(" <arg>"));
             }
         }
 
@@ -100,21 +100,21 @@ std::string CHelpFormatter::Format(const std::string &appName, COptionsList *opt
 
     for (size_t i = 0; i < opt.size(); ++i)
     {
-        std::string auxBuffer(argsNames[i]);
-        auxBuffer.append(std::string(largestArgsName - argsNames[i].size(), ' ') + argsParams[i]);
+        cli_string auxBuffer(argsNames[i]);
+        auxBuffer.append(cli_string(largestArgsName - argsNames[i].size(), ' ') + argsParams[i]);
 
-        vector_string_t descriptionLines = SplitString(opt[i].GetDescription(), "\n");
-        if (!descriptionLines.empty()) auxBuffer.append(std::string(largestArgsName + largestParamsName + 1 - auxBuffer.size(), ' ') + descriptionLines[0]);
+        vector_string_t descriptionLines = SplitString(opt[i].GetDescription(), _T("\n"));
+        if (!descriptionLines.empty()) auxBuffer.append(cli_string(largestArgsName + largestParamsName + 1 - auxBuffer.size(), ' ') + descriptionLines[0]);
 
         for (size_t l = 1; l < descriptionLines.size(); ++l)
         {
-            auxBuffer.append("\n");
-            auxBuffer.append(std::string(largestArgsName + largestParamsName + 1, ' ') + descriptionLines[l]);
+            auxBuffer.append(_T("\n"));
+            auxBuffer.append(cli_string(largestArgsName + largestParamsName + 1, ' ') + descriptionLines[l]);
         }
 
         if (i + 1 < opt.size())
         {
-            auxBuffer.append("\n");
+            auxBuffer.append(_T("\n"));
         }
 
         helpBuffer.append(auxBuffer);
@@ -122,3 +122,4 @@ std::string CHelpFormatter::Format(const std::string &appName, COptionsList *opt
 
     return helpBuffer;
 }
+

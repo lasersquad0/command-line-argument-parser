@@ -25,5 +25,6 @@ struct CHelpFormatter
      * @param options List of option allowed by the program.
      * @return A string in human readable format.
      */
-    static std::string Format(const std::string &appName, COptionsList *options);
+    static cli_string Format(const cli_string &appName, COptionsList *options);
 };
+

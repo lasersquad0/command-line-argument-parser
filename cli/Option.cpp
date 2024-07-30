@@ -13,7 +13,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-COption::COption(const std::string &shortName, const std::string &longName, const std::string &description, uint16_t numArgs, bool isRequired/*=false*/)
+COption::COption(const cli_string &shortName, const cli_string &longName, const cli_string &description, uint16_t numArgs, bool isRequired/*=false*/)
 {
     m_ShortName.assign(shortName);
     m_LongName.assign(longName);
@@ -23,7 +23,7 @@ COption::COption(const std::string &shortName, const std::string &longName, cons
     m_NumRequiredArgs = numArgs;
 }
 
-COption& COption::Assign(const std::string& shortName, const std::string& longName, const std::string& description, uint16_t numArgs, bool isRequired/*=false*/)
+COption& COption::Assign(const cli_string& shortName, const cli_string& longName, const cli_string& description, uint16_t numArgs, bool isRequired/*=false*/)
 {
     m_ShortName.assign(shortName);
     m_LongName.assign(longName);
@@ -48,7 +48,7 @@ COption& COption::Assign(const COption& opt)
     return *this;
 }
 
-const std::string COption::GetNonEmptyName(bool addDash /* =false*/)
+const cli_string COption::GetNonEmptyName(bool addDash /* =false*/)
 {
     if (addDash)
         if (m_ShortName.empty())

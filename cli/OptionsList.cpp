@@ -13,7 +13,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-static void TrimStr(std::string& str)
+static void TrimStr(cli_string& str)
 {
     // remove all leading and traling spaces.
     size_t strBegin = str.find_first_not_of(' ');
@@ -22,7 +22,7 @@ static void TrimStr(std::string& str)
     str.erase(0, strBegin);
 }
 
-bool COptionsList::VerifyOptionNames(std::string shortName, std::string longName)
+bool COptionsList::VerifyOptionNames(cli_string shortName, cli_string longName)
 {
     TrimStr(shortName);
     TrimStr(longName);
@@ -35,8 +35,8 @@ bool COptionsList::VerifyOptionNames(std::string shortName, std::string longName
 
 void COptionsList::AddOption(COption& option)
 {
-    const std::string& sn = option.GetShortName();
-    const std::string& ln = option.GetLongName();
+    const cli_string& sn = option.GetShortName();
+    const cli_string& ln = option.GetLongName();
     
     if (!VerifyOptionNames(sn, ln)) return; // option has invalid short and/or long names (or has incomlete data)
 
@@ -53,7 +53,7 @@ void COptionsList::AddOption(COption& option)
         opt->Assign(option);
 }
 
-void COptionsList::AddOption(const std::string &shortName, const std::string &longName, const std::string &description, uint16_t numArgs, bool isRequired)
+void COptionsList::AddOption(const cli_string &shortName, const cli_string &longName, const cli_string &description, uint16_t numArgs, bool isRequired)
 {
     COption o(shortName, longName, description, numArgs, isRequired);
     //o.ShortName(shortName).LongName(longName).Descr(description).NumArgs(numArgs).RequiredArgs(numArgs).Required(isRequired);
@@ -87,7 +87,7 @@ vector_option_pt COptionsList::GetRequiredOptions()
     return ret;
 }
 
-COption *COptionsList::GetOptionByShortName(const std::string &name)
+COption *COptionsList::GetOptionByShortName(const cli_string &name)
 {
     for (auto &it : m_AllOptions)
     {
@@ -98,7 +98,7 @@ COption *COptionsList::GetOptionByShortName(const std::string &name)
     return nullptr;
 }
 
-COption *COptionsList::GetOptionByLongName(const std::string &name)
+COption *COptionsList::GetOptionByLongName(const cli_string &name)
 {
     for (auto &it : m_AllOptions)
     {

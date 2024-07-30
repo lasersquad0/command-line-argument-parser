@@ -38,7 +38,7 @@ public:
      * @param numArgs MAximum number of arguments of the option.
      * @param isRequired True if is required, false otherwise.
      */
-    void AddOption(const std::string &shortName, const std::string &longName, const std::string &description, uint16_t numArgs, bool isRequired = false);
+    void AddOption(const cli_string &shortName, const cli_string &longName, const cli_string &description, uint16_t numArgs, bool isRequired = false);
 
     /**
      * @brief Checks if short and long names have correct values (at least one of them is not empty).
@@ -49,7 +49,7 @@ public:
      * @return True if both names have correct values. False if both shortName and longName strings are empty.
      * 
      */
-    bool VerifyOptionNames(std::string shortName, std::string longName);
+    bool VerifyOptionNames(cli_string shortName, cli_string longName);
 
     /**
      * @brief Get option by the short name.
@@ -57,7 +57,7 @@ public:
      * @param name The name of the option.
      * @return A pointer to the option if found, nullptr otherwise.
      */
-    COption *GetOptionByShortName(const std::string &name);
+    COption *GetOptionByShortName(const cli_string &name);
 
     /**
      * @brief Get option by the long name.
@@ -65,7 +65,7 @@ public:
      * @param name The name of the option.
      * @return A pointer to the option if found, nullptr otherwise.
      */
-    COption *GetOptionByLongName(const std::string &name);
+    COption *GetOptionByLongName(const cli_string &name);
 
     /**
      * @brief Retrieve all the options that have required arguments (at leas one such argument).
