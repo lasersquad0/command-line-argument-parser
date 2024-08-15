@@ -10,9 +10,10 @@
 //
 // STDLib/OS includes
 //
+#include <tchar.h>
 #include <string>
 #include <vector>
-#include <stdexcept>
+//#include <stdexcept>
 
 ///////////////////////////////////////////////////////////////////////////////
 
