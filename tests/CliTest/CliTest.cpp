@@ -91,7 +91,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 0, false);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 0, false));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -108,7 +108,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 0, false);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 0, false));
 
 			vector_string_t args;
 			args.push_back("");
@@ -127,7 +127,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 0, true);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 0, true));
 
 			vector_string_t args;
 			args.push_back("p");
@@ -146,8 +146,8 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 0, true);
-			opt.AddOption("p", "", "descr", 0);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 0, true));
+			Assert::IsTrue(opt.AddOption("p", "", "descr", 0));
 
 			vector_string_t args;
 			args.push_back("-p");
@@ -166,7 +166,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 1, true);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, true));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -185,7 +185,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("", "tt", "descr", 1, false);
+			Assert::IsTrue(opt.AddOption("", "tt", "descr", 1, false));
 
 			vector_string_t args;
 			args.push_back("--tt");
@@ -200,7 +200,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("", "tt", "descr", 1, false);
+			Assert::IsTrue(opt.AddOption("", "tt", "descr", 1, false));
 
 			vector_string_t args;
 			args.push_back(""); // empty aguments are ignored
@@ -219,7 +219,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("", "tt", "descr", 1, false);
+			Assert::IsTrue(opt.AddOption("", "tt", "descr", 1, false));
 
 			vector_string_t args;
 			args.push_back("--tt");
@@ -236,7 +236,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 1, false);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, false));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -252,7 +252,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 1, false);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, false));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -270,7 +270,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 1, false);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, false));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -297,8 +297,8 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 1, false);
-			opt.AddOption("d", "", "descr", 1, true);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, false));
+			Assert::IsTrue(opt.AddOption("d", "", "descr", 1, true));
 			
 			vector_string_t args;
 			args.push_back("-t");
@@ -315,8 +315,8 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "tt", "descrT", 1, false);
-			opt.AddOption("d", "dd", "descrD", 0, true);
+			Assert::IsTrue(opt.AddOption("t", "tt", "descrT", 1, false));
+			Assert::IsTrue(opt.AddOption("d", "dd", "descrD", 0, true));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -332,8 +332,8 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descrT", 1, false);
-			opt.AddOption("d", "", "descrD", 0, true);
+			Assert::IsTrue(opt.AddOption("t", "", "descrT", 1, false));
+			Assert::IsTrue(opt.AddOption("d", "", "descrD", 0, true));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -351,8 +351,8 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 1, false);
-			opt.AddOption("d", "", "descr", 1, true);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, false));
+			Assert::IsTrue(opt.AddOption("d", "", "descr", 1, true));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -370,8 +370,8 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 1, false);
-			opt.AddOption("d", "", "descr", 1, true);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, false));
+			Assert::IsTrue(opt.AddOption("d", "", "descr", 1, true));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -390,8 +390,8 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("d", "", "descr", 1, false);
-			opt.AddOption("t", "", "descr", 1, true);
+			Assert::IsTrue(opt.AddOption("d", "", "descr", 1, false));
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, true));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -409,26 +409,55 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("d", "Duuo", "descr", 1, false);
+			Assert::IsTrue(opt.AddOption("d", "Duuo", "descr", 1, false));
 			Assert::AreEqual(cli_string("Duuo"), opt["d"]->GetLongName());
 			Assert::AreEqual(cli_string("descr"), opt["d"]->GetDescription());
 			Assert::AreEqual((uint16_t)1, opt["d"]->GetNumArgs());
 			Assert::AreEqual(false, opt["d"]->IsRequired());
+			Assert::IsNull(opt["D"]);
+			Assert::IsNotNull(opt["Duuo"]);
+			Assert::IsNull(opt[""]);
+			Assert::IsNull(opt["duuo"]);
 
-			opt.AddOption("t", "", "descr", 1, true);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, true));
+			Assert::IsNull(opt["T"]);
+			Assert::IsNotNull(opt[""]); // because option -t has empty long name
+			Assert::IsTrue(opt.AddOption("t", "non-empty", "descrT", 1, true)); // override previous values
+			Assert::IsNull(opt["T"]);
+			Assert::IsNull(opt[""]);
 
-			opt.AddOption("d", "", "descr2", 0, true); // overwrites previous AddOption("d"...
+
+			Assert::IsTrue(opt.AddOption("d", "", "descr2", 2, true)); // overwrites previous AddOption("d"...
 			Assert::AreEqual(cli_string(""), opt["d"]->GetLongName());
 			Assert::AreEqual(cli_string("descr2"), opt["d"]->GetDescription());
-			Assert::AreEqual((uint16_t)0, opt["d"]->GetNumArgs());
+			Assert::AreEqual((uint16_t)2, opt["d"]->GetNumArgs());
 			Assert::AreEqual(true, opt["d"]->IsRequired());
+			Assert::IsNull(opt["D"]);
+			Assert::IsNull(opt["Duuo"]);
+			Assert::IsNull(opt["duuo"]);
 
+			Assert::IsTrue(opt.AddOption("D", "DoublE", "descrD", 5, true));
+			Assert::AreEqual(cli_string("DoublE"), opt["D"]->GetLongName());
+			Assert::AreEqual(cli_string("descrD"), opt["D"]->GetDescription());
+			Assert::AreEqual((uint16_t)5, opt["D"]->GetNumArgs());
+			Assert::AreEqual(true, opt["D"]->IsRequired());
+			Assert::IsNotNull(opt["d"]);
+			Assert::IsNotNull(opt["D"]);
+			Assert::IsNotNull(opt["DoublE"]);
+			Assert::IsNull(opt["Double"]);
+
+			// check that option '-d' hasn't changed by option '-D'
+			Assert::AreEqual(cli_string(""), opt["d"]->GetLongName());
+			Assert::AreEqual(cli_string("descr2"), opt["d"]->GetDescription());
+			Assert::AreEqual((uint16_t)2, opt["d"]->GetNumArgs());
+			Assert::AreEqual(true, opt["d"]->IsRequired());
+			
 			vector_string_t args;
 			args.push_back("-t");
 			args.push_back("arg_for_t");
 
 			Assert::IsFalse(p.Parse(&opt, &cmd, args));
-			Assert::AreEqual("Missing required option: -d", p.GetLastError().c_str());
+			Assert::AreEqual("Missing required options: -d, -D", p.GetLastError().c_str());
 		}
 
 		// case with two options with the sames name
@@ -439,16 +468,16 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("d", "", "descr", 1, false);
+			Assert::IsTrue(opt.AddOption("d", "", "descr", 1, false));
 			Assert::AreEqual(cli_string("d"), opt["d"]->GetShortName());
 			Assert::AreEqual(cli_string(""), opt["d"]->GetLongName());
 			Assert::AreEqual(cli_string("descr"), opt["d"]->GetDescription());
 			Assert::AreEqual((uint16_t)1, opt["d"]->GetNumArgs());
 			Assert::AreEqual(false, opt["d"]->IsRequired());
 
-			opt.AddOption("t", "", "text", 1, true);
+			Assert::IsTrue(opt.AddOption("t", "", "text", 1, true));
 			
-			opt.AddOption("d", "Dub", "descr2", 0, true);
+			Assert::IsTrue(opt.AddOption("d", "Dub", "descr2", 0, true));
 			Assert::AreEqual(cli_string("d"), opt["d"]->GetShortName());
 			Assert::AreEqual(cli_string("Dub"), opt["d"]->GetLongName());
 			Assert::AreEqual(cli_string("descr2"), opt["d"]->GetDescription());
@@ -471,8 +500,8 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("d", "dd", "descr", 1, false);
-			opt.AddOption("t", "tt", "descr", 1, true);
+			Assert::IsTrue(opt.AddOption("d", "dd", "descr", 1, false));
+			Assert::IsTrue(opt.AddOption("t", "tt", "descr", 1, true));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -488,8 +517,8 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "tt", "descr1", 0, false);
-			opt.AddOption("f", "tt", "descr2", 1, true);
+			Assert::IsTrue(opt.AddOption("t", "tt", "descr1", 0, false));
+			Assert::IsTrue(opt.AddOption("f", "tt", "descr2", 1, true));
 
 			vector_string_t args;
 			args.push_back("--tt");
@@ -506,8 +535,10 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "total", "descr1", 1, false);
-			opt.AddOption("todo", "tutu", "descr2", 0);
+			Assert::IsTrue(opt.AddOption("t", "total", "descr1", 1, false));
+			Assert::IsFalse(opt.AddOption("todo", "tutu", "descr2", 0)); // short option cannot be longer than 1 symbol
+			Assert::IsNotNull(opt["t"]);
+			Assert::IsNull(opt["todo"]);
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -523,7 +554,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "total", "descr1", 1, false);
+			Assert::IsTrue(opt.AddOption("t", "total", "descr1", 1, false));
 			
 			vector_string_t args;
 			args.push_back("--t");
@@ -540,8 +571,8 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "tt", "descr", 1, false);
-			opt.AddOption("t", "ttt", "descr", 1, true);
+			Assert::IsTrue(opt.AddOption("t", "tt", "descr", 1, false));
+			Assert::IsTrue(opt.AddOption("t", "ttt", "descr", 1, true));
 
 			vector_string_t args;
 			args.push_back("--ttt");
@@ -563,8 +594,8 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 1, false);
-			opt.AddOption("d", "", "descr", 2, false);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, false));
+			Assert::IsTrue(opt.AddOption("d", "", "descr", 2, false));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -582,8 +613,8 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 1, false);
-			opt.AddOption("d", "", "descr", 2, true);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, false));
+			Assert::IsTrue(opt.AddOption("d", "", "descr", 2, true));
 
 			vector_string_t args;
 			args.push_back("");
@@ -604,9 +635,9 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 1, false);
-			opt.AddOption("d", "", "descr", 2, false);
-			opt.AddOption("c", "", "descr", 1, false);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, false));
+			Assert::IsTrue(opt.AddOption("d", "", "descr", 2, false));
+			Assert::IsTrue(opt.AddOption("c", "", "descr", 1, false));
 
 			vector_string_t args;
 			args.push_back("-t");
@@ -626,7 +657,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("t", "", "descr", 1, false);
+			Assert::IsTrue(opt.AddOption("t", "", "descr", 1, false));
 		
 			vector_string_t args;
 			args.push_back("-t");
@@ -645,8 +676,8 @@ namespace CliTest
 			COptionsList opt;
 
 			// that's really two duplicate options. option2 shortname 'b' is the same as option1 long name 'b'
-			opt.AddOption("a", "b", "descr", 1, false);
-			opt.AddOption("b", "", "descr", 1, false);
+			Assert::IsTrue(opt.AddOption("a", "b", "descr", 1, false));
+			Assert::IsTrue(opt.AddOption("b", "", "descr", 1, false));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -665,8 +696,8 @@ namespace CliTest
 			COptionsList opt;
 
 			// that's really two duplicate options. option2 shortname 'b' is the same as option1 long name 'b'
-			opt.AddOption("b", "", "descr", 1, false);
-			opt.AddOption("a", "b", "descr", 1, false);
+			Assert::IsTrue(opt.AddOption("b", "", "descr", 1, false));
+			Assert::IsTrue(opt.AddOption("a", "b", "descr", 1, false));
 			
 			vector_string_t args;
 			args.push_back("-a");
@@ -685,7 +716,7 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("a", "b", "descr", -1);
+			Assert::IsTrue(opt.AddOption("a", "b", "descr", -1));
 			
 			vector_string_t args;
 			args.push_back("-a");
@@ -782,7 +813,7 @@ namespace CliTest
 			Assert::AreEqual((uint16_t)2, o.GetNumArgs());
 			Assert::AreEqual((uint16_t)1, o.GetNumRequiredArgs());
 
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -805,7 +836,7 @@ namespace CliTest
 			Assert::AreEqual((uint16_t)1, o.GetNumRequiredArgs());
 			Assert::IsFalse(o.IsRequired());
 
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -829,7 +860,7 @@ namespace CliTest
 			Assert::AreEqual((uint16_t)1, o.GetNumRequiredArgs());
 			Assert::IsFalse(o.IsRequired());
 
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -854,7 +885,7 @@ namespace CliTest
 			Assert::AreEqual((uint16_t)1, o.GetNumRequiredArgs());
 			Assert::IsFalse(o.IsRequired());
 
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -879,7 +910,7 @@ namespace CliTest
 			Assert::AreEqual((uint16_t)2, o.GetNumArgs());
 			Assert::AreEqual((uint16_t)0, o.GetNumRequiredArgs());
 			Assert::IsFalse(o.IsRequired());
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -902,7 +933,7 @@ namespace CliTest
 			Assert::AreEqual((uint16_t)0, o.GetNumRequiredArgs());
 			Assert::IsFalse(o.IsRequired());
 
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -920,7 +951,7 @@ namespace CliTest
 
 			COption o;// = COption::builder("a").numOfArgs(2).requiredArgs(0).build();
 			o.ShortName("a").NumArgs(2).RequiredArgs(0); 
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -939,7 +970,7 @@ namespace CliTest
 
 			COption o;// = COption::builder("a").numOfArgs(2).requiredArgs(0).build();
 			o.ShortName("a").NumArgs(2).RequiredArgs(0); 
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -964,7 +995,7 @@ namespace CliTest
 			Assert::AreEqual((uint16_t)2, o.GetNumArgs());
 			Assert::AreEqual((uint16_t)2, o.GetNumRequiredArgs());
 			Assert::IsFalse(o.IsRequired());
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("--ab");
@@ -986,7 +1017,7 @@ namespace CliTest
 			Assert::AreEqual((uint16_t)2, o.GetNumArgs());
 			Assert::AreEqual((uint16_t)2, o.GetNumRequiredArgs());
 			Assert::IsFalse(o.IsRequired());
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("--automotovelofototeleradio");
@@ -1004,7 +1035,7 @@ namespace CliTest
 
 			COption o;// = COption::builder("a").numOfArgs(1).requiredArgs(2).build();
 			o.ShortName("a").NumArgs(1).RequiredArgs(2); 
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -1023,7 +1054,7 @@ namespace CliTest
 
 			COption o;// = COption::builder("a").numOfArgs(1).requiredArgs(2).build();
 			o.ShortName("a").NumArgs(1).RequiredArgs(2); 
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -1049,7 +1080,7 @@ namespace CliTest
 			Assert::AreEqual((uint16_t)1, o.GetNumRequiredArgs());
 			Assert::IsFalse(o.IsRequired());
 
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -1066,7 +1097,7 @@ namespace CliTest
 
 			COption o;// = COption::builder("a").requiredArgs(2).numOfArgs(1).build();
 			o.ShortName("a").RequiredArgs(2).NumArgs(1);
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -1084,7 +1115,7 @@ namespace CliTest
 
 			COption o;
 			o.ShortName("a").RequiredArgs(2).NumArgs(1); 
-			opt.AddOption(o);
+			Assert::IsTrue(opt.AddOption(o));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -1095,7 +1126,27 @@ namespace CliTest
 			Assert::AreEqual("Too many arguments for option: -a", p.GetLastError().c_str());
 		}
 
-		TEST_METHOD(TestParse_Excludes1)
+		TEST_METHOD(TestParse_MutuallyExclusive1)
+		{
+			COptionsList opt;
+
+			Assert::IsFalse(opt.MutuallyExclusive("a", "b"));
+			Assert::IsFalse(opt.MutuallyExclusive("a", "b"));
+			Assert::IsFalse(opt.MutuallyExclusive("bb", "a"));
+			Assert::IsFalse(opt.MutuallyExclusive("a", "b"));
+
+			Assert::IsTrue(opt.AddOption("t", "tttt", "descrT", 0));
+			Assert::IsFalse(opt.MutuallyExclusive("t", "h"));
+			Assert::IsFalse(opt.MutuallyExclusive("h", "t"));
+
+			Assert::IsTrue(opt.AddOption("o", "poooo", "descrO", 100));
+			Assert::IsTrue(opt.MutuallyExclusive("t", "o"));
+			Assert::IsTrue(opt.MutuallyExclusive("t", "poooo"));
+			Assert::IsTrue(opt.MutuallyExclusive("tttt", "o"));
+			Assert::IsTrue(opt.MutuallyExclusive("tttt", "poooo"));
+		}
+
+		TEST_METHOD(TestParse_MutuallyExclusive2)
 		{
 			CDefaultParser p;
 			CCommandLine cmd;
@@ -1103,14 +1154,14 @@ namespace CliTest
 
 			COption a;
 			a.ShortName("a").NumArgs(1);
-			opt.AddOption(a);
+			Assert::IsTrue(opt.AddOption(a));
 
 			COption b;
 			b.ShortName("b");
-			opt.AddOption(b);
+			Assert::IsTrue(opt.AddOption(b));
 
-			opt.MutuallyExclusive("a", "b");
-			opt.MutuallyExclusive("a", "b");
+			Assert::IsTrue(opt.MutuallyExclusive("a", "b"));
+			Assert::IsTrue(opt.MutuallyExclusive("a", "b"));
 
 			vector_string_t args;
 			args.push_back("-a");
@@ -1118,6 +1169,27 @@ namespace CliTest
 		
 			Assert::IsTrue(p.Parse(&opt, &cmd, args));
 			//Assert::AreEqual("Too many arguments for option: -a", p.GetLastError().c_str());
+		}
+
+		TEST_METHOD(TestParse_Excludes1)
+		{
+			CDefaultParser p;
+			CCommandLine cmd;
+			COptionsList opt;
+
+			Assert::IsTrue(opt.AddOption("g", "ggggg", "descrG", 0, true));
+			Assert::IsTrue(opt.AddOption("N", "NNNNN", "descrN", 4));
+			opt.GetOption("ggggg")->Excludes(nullptr);
+			
+			opt.GetOption("ggggg")->Excludes(opt.GetOption("NNNNN"));
+			opt.GetOption("ggggg")->Excludes(opt.GetOption("N"));
+
+			//options are case sensitive
+			Assert::IsNull(opt.GetOption("G"));
+			Assert::IsNull(opt.GetOption("GGGGG"));
+			Assert::IsNull(opt.GetOption("n"));
+			Assert::IsNull(opt.GetOption("nnnnn"));
+
 		}
 
 		TEST_METHOD(TestParse_Excludes2)
@@ -1128,11 +1200,11 @@ namespace CliTest
 
 			COption a;
 			a.ShortName("a").NumArgs(1);
-			opt.AddOption(a);
+			Assert::IsTrue(opt.AddOption(a));
 
 			COption b;
 			b.ShortName("b").Excludes(opt["a"]); // important to use opt["a"] instead of a because opt.AddOption(a) creates a copy of a
-			opt.AddOption(b);
+			Assert::IsTrue(opt.AddOption(b));
 			
 			vector_string_t args;
 			args.push_back("-a");
@@ -1149,9 +1221,9 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("a", "aa", "descr A", 1);
-			opt.AddOption("b", "bb", "descr B", 0);
-			opt.AddOption("c", "cc", "descr C", 0);
+			Assert::IsTrue(opt.AddOption("a", "aa", "descr A", 1));
+			Assert::IsTrue(opt.AddOption("b", "bb", "descr B", 0));
+			Assert::IsTrue(opt.AddOption("c", "cc", "descr C", 0));
 
 			opt["a"]->Excludes(opt["b"]);
 			opt["c"]->Excludes(opt["a"], opt["b"]);
@@ -1189,10 +1261,10 @@ namespace CliTest
 			CCommandLine cmd;
 			COptionsList opt;
 
-			opt.AddOption("a", "aa", "descr A", 1);
-			opt.AddOption("b", "bb", "descr B", 0);
-			opt.AddOption("c", "cc", "descr C", 0);
-			opt.AddOption("d", "dd", "descr D", 0);
+			Assert::IsTrue(opt.AddOption("a", "aa", "descr A", 1));
+			Assert::IsTrue(opt.AddOption("b", "bb", "descr B", 0));
+			Assert::IsTrue(opt.AddOption("c", "cc", "descr C", 0));
+			Assert::IsTrue(opt.AddOption("d", "dd", "descr D", 0));
 
 			opt["a"]->Excludes(opt["b"], opt["b"], opt["a"], opt["c"], opt["d"]);
 			opt["b"]->Excludes(opt["b"], opt["c"], opt["d"]);
