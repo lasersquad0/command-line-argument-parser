@@ -28,7 +28,7 @@ namespace CliTest
 			vector_string_t args;
 
 			Assert::IsFalse(p.Parse(&opt, &cmd, args)); // should return false because empty args list
-			Assert::AreEqual(_T("Empty list of options in command line"), p.GetLastError().c_str());
+			Assert::AreEqual(_U("Empty list of options in command line"), p.GetLastError().c_str());
 		}
 
 		// case when 'tt' is not an option. options should start from '-' or '--'
@@ -42,10 +42,10 @@ namespace CliTest
 			COptionsList opt;
 
 			vector_string_t args;
-			args.push_back(_T("tt"));
+			args.push_back(_U("tt"));
 
 			Assert::IsFalse(p.Parse(&opt, &cmd, args)); 
-			Assert::AreEqual(_T("Unknown argument in command line: tt"), p.GetLastError().c_str());
+			Assert::AreEqual(_U("Unknown argument in command line: tt"), p.GetLastError().c_str());
 		}
 
 		// case with unknown option in cmd
@@ -59,10 +59,10 @@ namespace CliTest
 			COptionsList opt;
 
 			vector_string_t args;
-			args.push_back(_T("-t"));
+			args.push_back(_U("-t"));
 
 			Assert::IsFalse(p.Parse(&opt, &cmd, args)); // should return false because '-t' is unknown option.
-			Assert::AreEqual(_T("Unknown option has been met: -t"), p.GetLastError().c_str());
+			Assert::AreEqual(_U("Unknown option has been met: -t"), p.GetLastError().c_str());
 		}
 
 		BEGIN_TEST_METHOD_ATTRIBUTE(TestParse_UnknownLongOption)
