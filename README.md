@@ -33,7 +33,8 @@ int main(int argc, char *argv[])
     
     //another way to define option
     COption opt;
-    opt.ShortName("a").LongName("algorithm").Descr("algorithm test").NumArgs(0).RequiredArgs(0).Required(false);
+    opt.ShortName("a").LongName("algorithm").Descr("algorithm test").NumArgs(0).RequiredArgs(0)
+                   .Required(false);
     options.AddOption(opt);
 
     // defining mutually exclusive options
@@ -49,14 +50,15 @@ int main(int argc, char *argv[])
     }
 
     // work with options with 1 and more arguments. Argument indexes start from 0.
-    std::string input = cmd.GetOptionValue("i", 1, "second arg"); // looking in cmd for option by short name and having index 1
+    std::string input = cmd.GetOptionValue("i", 1, "second arg"); // looking for option by short name with index 1
     printf("-i <arg 2>: %s\n\n", input.c_str()); // iarg2, second argument has index 1
 
     input = cmd.GetOptionValue("input", 0, "first arg"); // looking for option by long name and having index 0
     printf("--input <arg 1>: %s\n", input.c_str()); // iarg1
 
 
-    //option names are CASE SENSITIVE, the default value "second arg default" will be returned because there is no 'I' option in the 'options' list
+    // option names are CASE SENSITIVE, the default value "second arg default" will be returned
+    // because there is no 'I' option in the 'options' list
     input = cmd.GetOptionValue("I", 1, "second arg default"); 
     printf("-I <arg 2>: %s\n\n", input.c_str()); // "second arg default"
 
