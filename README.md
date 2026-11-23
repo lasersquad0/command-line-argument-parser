@@ -3,9 +3,13 @@
 Simple and convenient command line parser.
 
 Command line for the parser looks like: "-i iarg1 iarg2 -o oarg1 oarg2 --algorithm".
+
 Where '-i', '-o', '--algorithm' are options. Options must start from '-' (for short options) or from '--' for long options.
+
 Short option name contains only one letter (e.g. '-i'). Log option name can contain any number of letters (e.g. '--input').
+
 After the option there may follow several option arguments e.g. '-i iarg1 iarg2'. Option '-i' has two arguments.
+
 There may be options without arguments at all e.g. '-i -o oarg'. Option '-i' here does not contain any arguments while option '-o' does contain one argument 'oarg'.
 
 More examples can be found in section Usage below.
